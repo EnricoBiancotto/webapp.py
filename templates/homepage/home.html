@@ -1,186 +1,208 @@
-{% extends 'homepage/index.html' %}
+{% extends 'homepage/index.html' %} {% block ipv4 %}
 
-{% block ipv4 %}
+<p>Un indirizzo IP è un'etichetta numerica che identifica univocamente un dispositivo detto host collegato a una rete informatica che utilizza l'Internet Protocol come protocollo di rete. Viene assegnato a una interfaccia (ad esempio una scheda di rete)
+  che identifica l'host di rete. Va considerato, infatti, che un host può contenere più di una interfaccia (ad esempio un router). Gli indirizzi IP vengono suddivisi in classi, per dividere lo spazio di indirizzamento IPv4.
+</p>
 
-  <p>Un indirizzo IP è un'etichetta numerica che identifica univocamente un dispositivo detto host collegato a una rete informatica che utilizza l'Internet Protocol come protocollo di rete.
+{% endblock %} {% block classi %}
 
-  Viene assegnato a una interfaccia (ad esempio una scheda di rete) che identifica l'host di rete. Va considerato, infatti, che un host può contenere più di una interfaccia (ad esempio un router).
-  Gli indirizzi IP vengono suddivisi in classi, per dividere lo spazio di indirizzamento IPv4.
-  </p>
-
-{% endblock %}
-
-{% block classi %}
-
-    <table align="center">
-    <tr>
+<table align="center">
+  <tr>
     <th>Classe&nbsp&nbsp&nbsp</th>
     <th>Bit iniziali&nbsp&nbsp&nbsp</th>
     <th>Inizio intervallo&nbsp&nbsp&nbsp</th>
     <th>Fine intervallo&nbsp&nbsp&nbsp</th>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td>A</td>
     <td>0</td>
     <td>0.0.0.0</td>
     <td>127.255.255.255</td>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td>B</td>
     <td>10</td>
     <td>128.0.0.0</td>
     <td>191.255.255.255</td>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td>C</td>
     <td>110</td>
     <td>192.0.0.0</td>
     <td>223.255.255.255</td>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td>D</td>
     <td>1110</td>
     <td>224.0.0.0</td>
     <td>239.255.255.255</td>
-    </tr>
-    <tr>
+  </tr>
+  <tr>
     <td>E</td>
     <td>1111</td>
     <td>240.0.0.0</td>
     <td>255.255.255.254</td>
-    </tr>
-    </table>
-    <br>
-      <div class="row pb-3">
-         <div class="col-sm-12">
-           <p class="text-center"> Inserire un indirizzo IP per ottenere la classe di appartenenza </p>
-         </div>
+  </tr>
+</table>
+<br>
+<div class="row pb-3">
+  <div class="col-sm-12">
+    <p class="text-center"> Inserire un indirizzo IP per ottenere la classe di appartenenza </p>
+  </div>
+</div>
+<div class="row pt-12">
+  <div class="col-sm-4"></div>
+  <div class="text-center col-sm-4">
+    <form action='#item-1-1' method="post">
+      {% csrf_token%}
+      <div class="col-12">
+        {{ classi.ip }}
+        <br>
+        <button name="classe-btn" type="submit" class="btn btn-primary">Okay</button>
       </div>
-      <div class="row pt-12">
-        <div class="col-sm-4"></div>
-          <div class="text-center col-sm-4">
-            <form method="post">
-              {% csrf_token%}
-               <div class="col-12">
-                {{ classi }}
-                 <br>
-                 <button name="classe-btn" type="submit" class="btn btn-primary">Submit</button>
-               </div>
-              <h3> {{ primo }}</h3>
-            </form>
-          </div>
-        </div>
-      </div>
-      <br>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 text-center">
+    <h4> {{ primo }} </h4>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<br> {% endblock %} {% block subnetting %}
 
-{% endblock %}
-
-{% block subnetting %}
-
-  <p>Una subnet, o sottorete, è una parte della suddivisione di una singola rete IP. Tale suddivisione è realmente visibile solo dalla parte logica della rete, ciò vuol dire che la differenza tra una rete e una sottorete sta nel tipo di configurazione di rete che si dà al proprio computer.
-
-  Il processo di subnetting è la divisione di una singola rete in gruppi di computer che hanno in comune nell'indirizzo IP un determinato prefisso di routing.</p>
-
+<p>Una subnet, o sottorete, è una parte della suddivisione di una singola rete IP. Tale suddivisione è realmente visibile solo dalla parte logica della rete, ciò vuol dire che la differenza tra una rete e una sottorete sta nel tipo di configurazione di rete
+  che si dà al proprio computer. Il processo di subnetting è la divisione di una singola rete in gruppi di computer che hanno in comune nell'indirizzo IP un determinato prefisso di routing.</p>
 {% endblock %}
 
 {% block trova_subnet %}
-
-      <div class="row pb-3">
-         <div class="col-sm-12">
-           <p class="text-center"> Inserire un indirizzo IP e una subnet mask </p>
-         </div>
-      </div>
-      <div class="row pt-12">
-        <div class="col-sm-4"></div>
-        <div class="text-center col-sm-4">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"> IP </span>
-            <input type="text" class="form-control" placeholder="192.168.0.0" aria-label="192.168.0.0" aria-describedby="basic-addon1">
-          </div>
-        </div>
-        <div class="col-sm-4"></div>
-      </div>
+<div class="row pb-3">
+  <div class="col-sm-12">
+    <p class="text-center"> Inserire un indirizzo IP e una subnet mask </p>
+  </div>
+</div>
+<div class="row pt-12">
+  <div class="col-sm-4"></div>
+  <div class="text-center col-sm-4">
+  <form action='#item-2-1'method="post">
+    {% csrf_token %}
+    <div class="col-12">
+    {% for sub in subnet %}
+        {{ sub }}<br>
+      {% endfor %}
       <br>
-      <div class="row pt-12">
-        <div class="col-sm-4"></div>
-        <div class="text-center col-sm-4">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1"> Mask </span>
-            <input type="text" class="form-control" placeholder="255.255.255.0" aria-label="255.255.255.0" aria-describedby="basic-addon1">
-          </div>
-        </div>
-        <div class="col-sm-4"></div>
-      </div>
-      <div class="row pt-4">
-        <form action="/risposte/subnet.html" method="POST">
-          {% csrf_token %}
-          {% for sub in form.subnetting %}
-            {{ sub.as_p }}
-          {% endfor %}
-          <button name="subn-btn" type="submit" class="btn btn-primary">Submit</button>
-          <h3>{{ secondo }}</h3>
-        </form>
-      </div>
+      <button name="subn-btn" type="submit" class="btn btn-primary">Okay</button>
       <br>
+      <br>
+      {% if secondo != 'ERRORE' %}
+      {% for sec in secondo %}
+      <h4> {{ sec }} </h4><br>
+      {% endfor %}
+      {% else %}
+      <h3> {{ secondo }} </h3>
+      {% endif %}
+    </div>
+  </form>
+</div>
+<br>
+{% endblock %}
 
+{% block subnet2 %}
+<div class="row pb-3">
+  <div class="col-sm-12">
+    <p class="text-center"> Inserire indirizzi IP e il numero di subnet che vuoi creare </p>
+  </div>
+</div>
+<div class="row pt-12">
+  <div class="col-sm-4"></div>
+  <div class="text-center col-sm-4">
+    <form action='#item-2-3'method="post">
+      {% csrf_token%}
+      <div class="col-12">
+        {% for sub in subnet2 %}
+        {{ sub }}<br>
+        {% endfor %}
+        <br>
+        <button name="subn2-btn" type="submit" class="btn btn-primary">Okay</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-10 text-center">
+  <h4> {{ quinto }} </h4>
+</div>
+<div class="col-sm-1"></div>
+<br>
 {% endblock %}
 
 {% block bitwise %}
-
-    <div class="row pb-3">
-         <div class="col-sm-12">
-           <form method="post">
-             {% csrf_token%}
-              <div class="col-4">
-               <p class="text-center"> Inserire due indirizzi IP e la subnet mask </p>
-                {% for bit in bitwise %}
-                  {{ bit }}
-                {% endfor %}
-                <br>
-                <button name="bitwise-btn" type="submit" class="btn btn-primary">Submit</button>
-              </div>
-             <h3> {{ terzo }} </h3>
-           </form>
-        </div>
+<div class="row pb-3">
+  <div class="col-sm-12">
+    <p class="text-center"> Inserire due indirizzi IP e la subnet mask </p>
+  </div>
+</div>
+<div class="row pb-3">
+  <div class="col-sm-4"></div>
+  <div class="text-center col-sm-4">
+    <form action='#item-2-2'method="post">
+      {% csrf_token%}
+      <div class="col-12">
+        {% for bit in bitwise %}
+          {{ bit }}<br>
+        {% endfor %}
+        <br>
+        <button name="bitwise-btn" type="submit" class="btn btn-primary">Okay</button>
       </div>
-      <br>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 text-center">
+    <h4> {{ terzo }} </h4>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<br> {% endblock %} {% block intro_cidr %}
 
-{% endblock %}
+<p>Il CIDR è uno schema di indirizzamento che sostituisce lo schema classful secondo il quale tutti gli indirizzi IP appartengono ad una specifica classe (classe A, B e C). Questo nuovo schema di indirizzamento consente una migliore gestione degli indirizzi
+  di rete e permette, in un indirizzo IP, di definire quale parte indichi la sotto rete e quale gli host. La notazione usata per esprimere indirizzi CIDR è la seguente: a.b.c.d/x, dove x è il numero di bit (contati partendo dal più significativo a sinistra)
+  che compongono la parte di indirizzo della rete. I rimanenti y=(32-x) bit consentono di calcolare il numero di host della sottorete pari a (2^{y}-2). Il (-2) è dovuto al fatto che il primo e l'ultimo indirizzo di ogni rete non sono assegnabili ad alcun
+  host, in quanto riservati rispettivamente come indirizzo della rete in generale e come indirizzo di broadcast.</p>
 
-{% block intro_cidr %}
+{% endblock %} {% block cidr %}
 
-  <p>Il CIDR è uno schema di indirizzamento che sostituisce lo schema classful secondo il quale tutti gli indirizzi IP appartengono ad una specifica classe (classe A, B e C).
-
-  Questo nuovo schema di indirizzamento consente una migliore gestione degli indirizzi di rete e permette, in un indirizzo IP, di definire quale parte indichi la sotto rete e quale gli host.
-
-  La notazione usata per esprimere indirizzi CIDR è la seguente: a.b.c.d/x, dove x è il numero di bit (contati partendo dal più significativo a sinistra) che compongono la parte di indirizzo della rete. I rimanenti y=(32-x) bit consentono di calcolare il numero di host della sottorete pari a (2^{y}-2). Il (-2) è dovuto al fatto che il primo e l'ultimo indirizzo di ogni rete non sono assegnabili ad alcun host, in quanto riservati rispettivamente come indirizzo della rete in generale e come indirizzo di broadcast.</p>
-
-{% endblock %}
-
-{% block cidr %}
-
-      <div class="row pb-3">
-         <div class="col-sm-12">
-           <p class="text-center"> Inserire l'indirizzo IP e il numero di host da indirizzare </p>
-         </div>
+<div class="row pb-3">
+  <div class="col-sm-12">
+    <p class="text-center"> Inserire l'indirizzo IP e il numero di host da indirizzare </p>
+  </div>
+</div>
+<div class="row pt-12">
+  <div class="col-sm-4"></div>
+  <div class="text-center col-sm-4">
+    <form action='#item-3-1' method="post">
+      {% csrf_token%}
+      <div class="col-12">
+        {% for cid in cidr %}
+          {{ cid }}<br>
+        {% endfor %}
+        <br>
+        <button name="cidr-btn" type="submit" class="btn btn-primary">Okay</button>
+        <br>
+        <br>
+        {% if quarto != 'ERRORE' and quarto != 'Non è necessario fare il CIDR' and quarto != 'Non è necessario fare il CIDR per n_host minori di 255' %}
+        {% for qu in quarto %}
+        <h4> {{ qu }} </h4>
+        {% endfor %}
+        {% else %}
+        <h3> {{ quarto }} </h3>
+        {% endif %}
       </div>
-      <div class="row pt-12">
-        <div class="col-sm-4"></div>
-          <div class="text-center col-sm-4">
-            <form method="post">
-              {% csrf_token%}
-               <div class="col-12">
-                 {% for cid in cidr %}
-                    {{ cid }}
-                  {% endfor %}
-                 <br>
-                 <button name="cidr-btn" type="submit" class="btn btn-primary">Submit</button>
-               </div>
-              <h3> {{ quarto }} </h3>
-            </form>
-          </div>
-        </div>
-      </div>
-      <br>
-
+    </form>
+  </div>
+</div>
+</div>
+<br>
 {% endblock %}
